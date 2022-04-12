@@ -17,21 +17,27 @@
 </p>
 {% if filename %}
 	<div>
-		<img src="{{ url_for('display_image', filename=filename) }}" width="350px" height="350px" style="margin-left:-400px">
+		<img src="{{ url_for('display_image', filename=filename) }}" width="400px" height="400px" style="margin-left:-400px">
 	</div>
 	<div style="margin-top:-350px ;margin-left:100px">
-	<h3>Les Resultats sont :</h3>
+	<h3>Results Are:</h3>
 
 
 
-	{% for result in list %}
-   <ul>
+	
+<table border=1>
+    {%- for row in dict.items()|batch(3) %}
     
-        <li>{{result}}</li>
-    
-    </ul>
-{% endfor %}
+        {%- for key,value in row %}
+        <tr>
+        <td style="color:#0064ff">{{ key }}</td>
+        <td>{{ value }}</td>
+        
 
+     
+    </tr>
+		{%- endfor %}
+    {%- endfor %}
 {% endif %}
 <form method="post" action="/" enctype="multipart/form-data">
     <dl>

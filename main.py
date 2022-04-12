@@ -29,7 +29,7 @@ def upload_image():
 		#print('upload_image filename: ' + filename)
 		flash('Image successfully uploaded and displayed below')
 		
-		return render_template('upload.html', filename=filename,list=ocrtext(filename))
+		return render_template('upload.html', filename=filename,dict=ocrtext(filename))
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg, gif')
 		return redirect(request.url)
@@ -40,4 +40,4 @@ def display_image(filename):
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=8080)

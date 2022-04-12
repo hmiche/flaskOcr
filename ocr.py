@@ -15,20 +15,21 @@ def ocrtext(image):
 
 
     ocr_agent = lp.TesseractAgent(languages='fra')
-    res = ocr_agent.detect(img, return_response=True  )
+    res = ocr_agent.detect(img, return_response=True )
 
     text=res['text']
     text = res['text'].split("\n")  
     
-    
-    Result.append(functions.extractnom(text))
-    Result.append(functions.Capital(text))
-    Result.append(functions.date(text))
-    Result.append(functions.form(text))
-    Result.append(functions.extractActivité(text))
-    Result.append(functions.siege(text))
+    dict={}
+    dict['Dénimination']=functions.extractnom(text)
+    dict['Date immatriculation']=functions.date(text)
+    dict['Forme Juridique']=functions.form(text)
+    dict['Activité']=functions.extractActivité(text)
+    dict['Capital']=functions.Capital(text)
+    dict['Siége Social']=functions.siege(text)
 
-    return Result
+
+    return dict
 
 
 
